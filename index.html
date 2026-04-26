@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hardware store — Каталог</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- CURSOR GLOW (CSS-only via :has won't work, so we use a pseudo element on body) -->
+  <div class="cursor-glow"></div>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <p class="logo">💻 Hardware store</p>
+    <div class="header-right">
+      <a class="button" href="#">🔥 Акції</a>
+    </div>
+  </header>
+
+  <!-- ===== NAV ===== -->
+  <nav>
+    <a class="nav-link active" href="index.html">Каталог</a>
+    <a class="nav-link" href="#">Доставка</a>
+    <a class="nav-link" href="#">Гарантія</a>
+    <a class="nav-link" href="about.html">Про нас</a>
+  </nav>
+
+  <!-- ===== HERO TICKER ===== -->
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span>🔥 PlayStation 5 — 28 999 ₴</span>
+      <span>📱 iPhone 17 Pro Max — 67 999 ₴</span>
+      <span>💻 MacBook Air M3 — 52 990 ₴</span>
+      <span>🎧 Sony WH-1000XM5 — 11 200 ₴</span>
+      <span>🖥️ LG UltraFine 4K — 22 800 ₴</span>
+      <span>⌚ Apple Watch Ultra 2 — 35 990 ₴</span>
+      <span>🔥 PlayStation 5 — 28 999 ₴</span>
+      <span>📱 iPhone 17 Pro Max — 67 999 ₴</span>
+      <span>💻 MacBook Air M3 — 52 990 ₴</span>
+      <span>🎧 Sony WH-1000XM5 — 11 200 ₴</span>
+    </div>
+  </div>
+
+  <main>
+    <h1>Обери свою техніку</h1>
+
+    <!-- ===== FILTER TABS (CSS-only checkbox trick) ===== -->
+    <div class="filter-section">
+      <input type="radio" name="filter" id="f-all"    class="f-radio" checked/>
+      <input type="radio" name="filter" id="f-gaming" class="f-radio"/>
+      <input type="radio" name="filter" id="f-office" class="f-radio"/>
+      <input type="radio" name="filter" id="f-study"  class="f-radio"/>
+
+      <div class="filter-bar">
+        <label for="f-all"    class="filter-btn">Всі</label>
+        <label for="f-gaming" class="filter-btn">🎮 Ігрові</label>
+        <label for="f-office" class="filter-btn">💼 Офісні</label>
+        <label for="f-study"  class="filter-btn">📚 Навчальні</label>
+      </div>
+
+      <!-- GRID — all cards always visible (pure CSS filter is display toggle via :checked ~ .info) -->
+      <section class="info">
+
+        <!-- CARD 1: gaming -->
+        <article class="post gaming">
+          <span class="tag tag-gaming">🎮 Ігровий</span>
+          <div class="post-img-wrap">
+            <img class="post-img" src="https://grokholsky.com/uploads/posts/porivnyannya-playstation-5-pro-abo-playstation-5-golovni-vidminnosti.png" alt="PlayStation 5"/>
+            <div class="post-overlay">
+              <span>Швидкий перегляд →</span>
+            </div>
+          </div>
+          <h2>PlayStation 5</h2>
+          <p class="post-text">Консоль нового покоління · 825 GB SSD</p>
+          <div class="post-footer">
+            <p class="post-price">28 999 ₴</p>
+            <div class="qty-control">
+              <button class="qty-btn" tabindex="-1">−</button>
+              <span class="qty-val">1</span>
+              <button class="qty-btn" tabindex="-1">+</button>
+            </div>
+          </div>
+          <a class="article-but" href="#">Детальніше</a>
+        </article>
+
+        <!-- CARD 2: office -->
+        <article class="post office">
+          <span class="tag tag-office">💼 Робочий</span>
+          <div class="ribbon">HOT</div>
+          <div class="post-img-wrap">
+            <img class="post-img" src="https://www.apple.com/v/iphone-17-pro/c/images/meta/iphone-17-pro_specs__gfp19rktodm6_og.png" alt="iPhone 17 Pro Max"/>
+            <div class="post-overlay"><span>Швидкий перегляд →</span></div>
+          </div>
+          <h2>iPhone 17 Pro Max</h2>
+          <p class="post-text">A19 Bionic · 256 GB · Titanium</p>
+          <div class="post-footer">
+            <p class="post-price">67 999 ₴</p>
+            <div class="qty-control">
+              <button class="qty-btn" tabindex="-1">−</button>
+              <span class="qty-val">1</span>
+              <button class="qty-btn" tabindex="-1">+</button>
+            </div>
+          </div>
+          <a class="article-but" href="#">Детальніше</a>
+        </article>
+
+        <!-- CARD 3: gaming -->
+        <article class="post gaming">
+          <span class="tag tag-gaming">🎮 Ігровий</span>
+          <div class="post-img-wrap">
+            <img class="post-img" src="https://gamingpc.com.ua/image/cache/blog/4ca002393db315540829a6232a0f4aa4-1452x679.jpg" alt="Acer Aspire 5"/>
+            <div class="post-overlay"><span>Швидкий перегляд →</span></div>
+          </div>
+          <h2>Acer Aspire 5</h2>
+          <p class="post-text">RTX 3050 · 16 GB RAM · 512 GB SSD</p>
+          <div class="post-footer">
+            <p class="post-price">49 999 ₴</p>
+            <div class="qty-control">
+              <button class="qty-btn" tabindex="-1">−</button>
+              <span class="qty-val">1</span>
+              <button class="qty-btn" tabindex="-1">+</button>
+            </div>
+          </div>
+          <a class="article-but" href="#">Детальніше</a>
+        </article>
+
+        <!-- CARD 4: gaming -->
+        <article class="post gaming">
+          <span class="tag tag-gaming">🎮 Ігровий</span>
+          <div class="ribbon ribbon-sale">−15%</div>
+          <div class="post-img-wrap">
+            <img class="post-img" src="https://smart-b2b.com.ua/image/cache/catalog/masha/tws/naushniki%20P9/IMG_7238-700x700.JPG" alt="MSI Katana 15"/>
+            <div class="post-overlay"><span>Швидкий перегляд →</span></div>
+          </div>
+          <h2>MSI Katana 15</h2>
+          <p class="post-text">RTX 4060 · 16 GB RAM · 512 GB SSD</p>
+          <div class="post-footer">
+            <div>
+              <p class="post-price">42 500 ₴ <s class="old-price">50 000 ₴</s></p>
+            </div>
+            <div class="qty-control">
+              <button class="qty-btn" tabindex="-1">−</button>
+              <span class="qty-val">1</span>
+              <button class="qty-btn" tabindex="-1">+</button>
+            </div>
+          </div>
+          <a class="article-but" href="#">Детальніше</a>
+        </article>
+
+        <!-- CARD 5: office -->
+        <article class="post office">
+          <span class="tag tag-office">💼 Офісний</span>
+          <div class="post-img-wrap">
+            <img class="post-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJROFASWfbPWWfGBUR9TJQURY_HT_O_krkiA&s" alt="HP EliteBook 840"/>
+            <div class="post-overlay"><span>Швидкий перегляд →</span></div>
+          </div>
+          <h2>HP EliteBook 840</h2>
+          <p class="post-text">Intel i5 · 8 GB RAM · 256 GB SSD</p>
+          <div class="post-footer">
+            <p class="post-price">38 499 ₴</p>
+            <div class="qty-control">
+              <button class="qty-btn" tabindex="-1">−</button>
+              <span class="qty-val">1</span>
+              <button class="qty-btn" tabindex="-1">+</button>
+            </div>
+          </div>
+          <a class="article-but" href="#">Детальніше</a>
+        </article>
+
+        <!-- CARD 6: study -->
+        <article class="post study">
+          <span class="tag tag-study">📚 Навчальний</span>
+          <div class="post-img-wrap">
+            <img class="post-img" src="https://static.tildacdn.com/tild3764-3861-4333-a661-623363373734/r6uuyvfm6nujxzaz.jpg" alt="Lenovo IdeaPad 3"/>
+            <div class="post-overlay"><span>Швидкий перегляд →</span></div>
+          </div>
+          <h2>Lenovo IdeaPad 3</h2>
+          <p class="post-text">AMD Ryzen 5 · 8 GB RAM · 512 GB SSD</p>
+          <div class="post-footer">
+            <p class="post-price">19 299 ₴</p>
+            <div class="qty-control">
+              <button class="qty-btn" tabindex="-1">−</button>
+              <span class="qty-val">1</span>
+              <button class="qty-btn" tabindex="-1">+</button>
+            </div>
+          </div>
+          <a class="article-but" href="#">Детальніше</a>
+        </article>
+
+      </section>
+    </div><!-- /filter-section -->
+
+    <!-- ===== ASIDE ===== -->
+    <aside>
+      <p class="aside-text"><b>Фільтр</b></p>
+      <a class="social" href="#" title="Ігрові">🎮</a>
+      <a class="social" href="#" title="Навчальні">📚</a>
+      <a class="social" href="#" title="Офісні">💼</a>
+      <div class="aside-divider"></div>
+      <a class="social" href="#" title="Кошик">🛒</a>
+      <a class="social" href="#" title="Обране">❤️</a>
+    </aside>
+
+    <!-- ===== PROMO BANNER ===== -->
+    <div class="promo-banner">
+      <div class="promo-text">
+        <span class="promo-label">Спеціальна пропозиція</span>
+        <h2>−15% на перше замовлення</h2>
+        <p>Зареєструйтесь та отримайте ексклюзивну знижку на будь-який товар.</p>
+      </div>
+      <a class="promo-btn" href="#">Отримати знижку →</a>
+      <div class="promo-glow"></div>
+    </div>
+
+    <!-- ===== FULL IMAGE ===== -->
+    <div class="full-img-wrap">
+      <img class="full-image" src="https://renews.com.ua/wp-content/uploads/2025/08/najkrashhi-noutbuki-dlja-navchannja-v-shkoli-spisok-e5c0f50.jpg" alt="Banner" width="100%"/>
+      <div class="full-img-overlay">
+        <span>Великий вибір техніки</span>
+        <a href="#" class="full-img-btn">Переглянути все</a>
+      </div>
+    </div>
+
+    <!-- ===== STATS ===== -->
+    <div class="stats">
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-number">4 800<span>+</span></div>
+          <div class="stat-label">Задоволених клієнтів</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">320<span>+</span></div>
+          <div class="stat-label">Товарів у каталозі</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">12</div>
+          <div class="stat-label">Місяців гарантії</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">Підтримка клієнтів</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TOOLTIP FEATURES ===== -->
+    <div class="features-row">
+      <div class="feat-item">
+        <div class="feat-icon">🚚</div>
+        <div class="feat-body">
+          <strong>Безкоштовна доставка</strong>
+          <span class="feat-tip">На замовлення від 2 000 ₴ по всій Україні</span>
+        </div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon">🛡️</div>
+        <div class="feat-body">
+          <strong>Офіційна гарантія</strong>
+          <span class="feat-tip">12–24 місяці на всі товари</span>
+        </div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon">↩️</div>
+        <div class="feat-body">
+          <strong>Повернення 30 днів</strong>
+          <span class="feat-tip">Не підійшло — повернемо без питань</span>
+        </div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon">💬</div>
+        <div class="feat-body">
+          <strong>Підтримка 24/7</strong>
+          <span class="feat-tip">Завжди на зв'язку в чаті або телефоном</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="contacts">
+      <p class="footer-text"><span class="address">Адреса:</span> м. Київ, вул. Технологічна, 67</p>
+      <p class="footer-text"><span class="tel">Телефон:</span> 0800-333-999</p>
+      <p class="footer-text"><span class="mail">Email:</span> info@laptophub.ua</p>
+    </div>
+    <div class="footer-logo">
+      <p class="footer-logo-text">💻 Hardware store</p>
+      <p class="footer-slogan">Твій ноутбук — твоя сила</p>
+    </div>
+  </footer>
+
+</body>
+</html>
