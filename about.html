@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hardware store — Про нас</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:     #0d0d14;
+      --bg2:    #13131f;
+      --bg3:    #1a1a2e;
+      --cyan:   #00cfff;
+      --yellow: #fffb00;
+      --purple: #7c3aed;
+      --blue:   #0ea5e9;
+      --text:   #ccd6f6;
+      --muted:  #7a8ab0;
+      --border: rgba(0,207,255,0.18);
+      --r:      6px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 3px; }
+
+    body {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 300;
+      background-color: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,207,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,207,255,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky; top: 0; z-index: 200;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 36px;
+      background-color: rgba(13,13,20,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      animation: slideDown .5s ease both;
+    }
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to   { transform: translateY(0);     opacity: 1; }
+    }
+    .logo {
+      font-family: 'Orbitron', monospace;
+      font-size: 22px; font-weight: 700;
+      color: var(--yellow);
+      letter-spacing: 2px;
+      text-shadow: 0 0 18px rgba(255,251,0,.45);
+      transition: text-shadow .3s;
+    }
+    .logo:hover { text-shadow: 0 0 30px rgba(255,251,0,.8); }
+    .button {
+      background: linear-gradient(135deg, #00cfff 0%, #0ea5e9 100%);
+      color: #000; text-decoration: none;
+      padding: 10px 22px; font-size: 15px;
+      font-family: 'Exo 2', sans-serif; font-weight: 600;
+      border-radius: var(--r); border: none;
+      transition: box-shadow .3s, transform .2s;
+    }
+    .button:hover { box-shadow: 0 0 22px rgba(0,207,255,.6); transform: translateY(-2px); }
+
+    /* NAV */
+    nav {
+      position: relative; z-index: 10;
+      border-top: 2px solid var(--cyan); border-bottom: 2px solid var(--cyan);
+      padding: 14px 100px;
+      display: flex; gap: 10px; justify-content: space-between;
+      background-color: var(--bg2);
+    }
+    .nav-link {
+      font-size: 15px; font-weight: 600; color: var(--muted);
+      text-decoration: none; padding: 6px 16px; border-radius: var(--r);
+      letter-spacing: .04em; text-transform: uppercase; position: relative;
+      transition: color .3s, background .3s;
+    }
+    .nav-link::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 16px; right: 16px;
+      height: 2px; background: var(--cyan);
+      transform: scaleX(0); transition: transform .3s; border-radius: 2px;
+    }
+    .nav-link:hover, .nav-link.active { color: var(--cyan); background: rgba(0,207,255,.07); }
+    .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
+
+    /* TICKER */
+    .ticker-wrap {
+      overflow: hidden; background: rgba(0,207,255,.07);
+      border-bottom: 1px solid var(--border); padding: 8px 0;
+      position: relative; z-index: 5;
+    }
+    .ticker {
+      display: flex; gap: 60px; width: max-content;
+      animation: ticker 30s linear infinite;
+    }
+    .ticker:hover { animation-play-state: paused; }
+    .ticker span {
+      font-size: 13px; font-weight: 600; color: var(--cyan);
+      white-space: nowrap; letter-spacing: .05em;
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* KEYFRAMES */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+
+    main { position: relative; z-index: 5; }
+
+    /* HERO */
+    .about-hero {
+      max-width: 1100px; margin: 60px auto 0; padding: 0 24px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .about-tag {
+      display: inline-block;
+      background: rgba(0,207,255,.1); border: 1px solid rgba(0,207,255,.3);
+      color: var(--cyan); font-size: 11px; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: 4px 14px; border-radius: 100px;
+      margin-bottom: 18px; animation: fadeUp .5s ease both;
+    }
+    .about-hero-text h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: 26px; font-weight: 700; color: #fff;
+      letter-spacing: 1px; margin-bottom: 22px; line-height: 1.35;
+      animation: fadeUp .6s ease .05s both;
+    }
+    .about-hero-text p {
+      color: var(--muted); font-size: 15px; line-height: 1.8;
+      margin-bottom: 14px; animation: fadeUp .6s ease .1s both;
+    }
+    .about-hero-text p strong { color: var(--cyan); font-weight: 600; }
+    .about-hero-visual { animation: fadeUp .7s ease .15s both; }
+    .about-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-bottom: 4px solid var(--cyan); border-radius: 12px;
+      padding: 36px; position: relative; overflow: hidden;
+    }
+    .about-card::before {
+      content: ''; position: absolute; top: -40px; right: -40px;
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, rgba(0,207,255,.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .about-card-icon { font-size: 52px; margin-bottom: 18px; display: block; }
+    .about-card h2 {
+      font-family: 'Orbitron', monospace; font-size: 18px; font-weight: 700;
+      color: #fff; margin-bottom: 14px; letter-spacing: .04em;
+    }
+    .about-card p { color: var(--muted); font-size: 14px; line-height: 1.7; }
+    .shine-bar {
+      height: 2px; margin: 18px 0;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      background-size: 200%; animation: shimmer 3s linear infinite;
+    }
+    .star-rating { margin-top: 8px; font-size: 13px; color: var(--cyan); }
+
+    /* DIVIDER */
+    .section-divider {
+      display: flex; align-items: center; gap: 18px;
+      max-width: 1100px; margin: 70px auto 50px; padding: 0 24px;
+    }
+    .section-divider::before, .section-divider::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+    .section-divider span {
+      font-family: 'Orbitron', monospace; font-size: 13px; color: var(--cyan);
+      letter-spacing: .12em; text-transform: uppercase; white-space: nowrap;
+    }
+
+    /* VALUES */
+    .values-section { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .value-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 30px 26px;
+      position: relative; overflow: hidden;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+      animation: cardIn .5s ease both;
+    }
+    .value-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0,207,255,.45);
+      box-shadow: 0 12px 36px rgba(0,207,255,.12);
+    }
+    .value-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      opacity: 0; transition: opacity .35s;
+    }
+    .value-card:hover::before { opacity: 1; }
+    .value-icon { font-size: 34px; margin-bottom: 16px; display: block; }
+    .value-title {
+      font-family: 'Orbitron', monospace; font-size: 13px; font-weight: 700;
+      color: #fff; margin-bottom: 10px; letter-spacing: .04em;
+    }
+    .value-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+    /* TIMELINE */
+    .timeline-section { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+    .timeline { position: relative; padding-left: 40px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 14px; top: 8px; bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--cyan), var(--purple), var(--blue));
+      border-radius: 2px;
+    }
+    .tl-item { position: relative; margin-bottom: 44px; animation: fadeUp .5s ease both; }
+    .tl-item:nth-child(1) { animation-delay: .05s; }
+    .tl-item:nth-child(2) { animation-delay: .15s; }
+    .tl-item:nth-child(3) { animation-delay: .25s; }
+    .tl-item:nth-child(4) { animation-delay: .35s; }
+    .tl-item:nth-child(5) { animation-delay: .45s; }
+    .tl-dot {
+      position: absolute; left: -32px; top: 6px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--cyan); border: 2px solid var(--bg);
+      box-shadow: 0 0 10px rgba(0,207,255,.6);
+    }
+    .tl-dot.purple { background: var(--purple); box-shadow: 0 0 10px rgba(124,58,237,.6); }
+    .tl-dot.amber  { background: #f59e0b;       box-shadow: 0 0 10px rgba(245,158,11,.6); }
+    .tl-dot.green  { background: #10b981;       box-shadow: 0 0 10px rgba(16,185,129,.6); }
+    .tl-dot.big    { width: 18px; height: 18px; left: -34px; box-shadow: 0 0 14px rgba(0,207,255,.8); }
+    .tl-year {
+      font-family: 'Orbitron', monospace; font-size: 12px;
+      color: var(--cyan); letter-spacing: .1em; margin-bottom: 6px; font-weight: 700;
+    }
+    .tl-year.purple { color: var(--purple); }
+    .tl-year.amber  { color: #f59e0b; }
+    .tl-year.green  { color: #10b981; }
+    .tl-title {
+      font-family: 'Orbitron', monospace; font-size: 15px;
+      font-weight: 700; color: #fff; margin-bottom: 8px;
+    }
+    .tl-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+    /* STATS */
+    .stats { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    .stats-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+    .stat-box {
+      background: var(--bg2); border: 1px solid rgba(0,207,255,.2);
+      border-radius: var(--r); padding: 28px 40px; width: 220px;
+      text-align: center; color: white; cursor: default;
+      transition: background .4s, border-color .4s, transform .3s, box-shadow .3s;
+    }
+    .stat-box:hover {
+      background: var(--bg3); border-color: orange;
+      transform: translateY(-4px); box-shadow: 0 10px 30px rgba(255,165,0,.15);
+    }
+    .stat-number {
+      font-family: 'Orbitron', monospace; font-size: 34px; font-weight: 900;
+      color: var(--cyan); margin-bottom: 8px; transition: color .4s;
+    }
+    .stat-number sup { font-size: 22px; }
+    .stat-box:hover .stat-number { color: orange; }
+    .stat-label { font-size: 14px; color: var(--muted); }
+
+    /* TEAM */
+    .team-section { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .team-grid { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; }
+    .team-card {
+      background: var(--bg2); border: 1px solid rgba(255,255,255,.06);
+      border-radius: 12px; width: 240px; padding: 32px 24px 26px;
+      text-align: center; position: relative; overflow: hidden;
+      transition: transform .35s, box-shadow .35s, border-color .35s;
+      animation: cardIn .5s ease both;
+    }
+    .team-card:nth-child(1) { animation-delay: .05s; }
+    .team-card:nth-child(2) { animation-delay: .13s; }
+    .team-card:nth-child(3) { animation-delay: .21s; }
+    .team-card:nth-child(4) { animation-delay: .29s; }
+    .team-card:hover { transform: translateY(-8px); box-shadow: 0 16px 44px rgba(0,207,255,.18); border-color: var(--cyan); }
+    .team-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      opacity: 0; transition: opacity .35s;
+    }
+    .team-card:hover::after { opacity: 1; }
+    .team-avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      border: 2px solid var(--border); margin: 0 auto 16px;
+      font-size: 42px; display: flex; align-items: center; justify-content: center;
+      background: var(--bg3); transition: border-color .35s;
+    }
+    .team-card:hover .team-avatar { border-color: var(--cyan); }
+    .team-name {
+      font-family: 'Orbitron', monospace; font-size: 12px; font-weight: 700;
+      color: #fff; margin-bottom: 6px; letter-spacing: .04em;
+    }
+    .team-role {
+      font-size: 11px; color: var(--cyan); font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase; margin-bottom: 12px;
+    }
+    .team-bio { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+    /* FEATURES */
+    .features-row {
+      display: flex; flex-wrap: wrap; gap: 20px;
+      max-width: 1100px; margin: 0 auto 80px; padding: 0 20px; justify-content: center;
+    }
+    .feat-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 20px 24px; width: 240px;
+      cursor: default; transition: border-color .3s, transform .3s;
+    }
+    .feat-item:hover { border-color: var(--cyan); transform: translateY(-4px); }
+    .feat-icon { font-size: 28px; flex-shrink: 0; }
+    .feat-body strong { display: block; font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+    .feat-tip {
+      display: block; font-size: 12px; color: var(--muted); line-height: 1.5;
+      max-height: 0; overflow: hidden; opacity: 0;
+      transition: max-height .35s ease, opacity .35s;
+    }
+    .feat-item:hover .feat-tip { max-height: 60px; opacity: 1; }
+
+    /* CONTACTS */
+    .contacts-bar {
+      max-width: 1100px; margin: 0 auto 60px; padding: 0 24px;
+      display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;
+    }
+    .contact-chip {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 18px 26px;
+      text-decoration: none; color: var(--text); font-size: 14px; min-width: 200px;
+      transition: border-color .3s, transform .3s, box-shadow .3s;
+    }
+    .contact-chip:hover { border-color: var(--cyan); transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,207,255,.13); }
+    .contact-chip-icon { font-size: 26px; }
+    .contact-chip-label { font-size: 11px; color: var(--muted); margin-bottom: 2px; letter-spacing: .06em; text-transform: uppercase; }
+    .contact-chip-val { font-weight: 600; color: #fff; }
+
+    /* CTA */
+    .cta-block { max-width: 800px; margin: 0 auto 80px; padding: 0 24px; text-align: center; }
+    .cta-inner {
+      background: var(--bg2); border: 1px solid rgba(0,207,255,.25);
+      border-radius: 14px; padding: 56px 48px;
+      position: relative; overflow: hidden;
+    }
+    .cta-inner::before {
+      content: ''; position: absolute; bottom: -60px; left: 50%;
+      transform: translateX(-50%); width: 400px; height: 200px;
+      background: radial-gradient(ellipse, rgba(0,207,255,.14) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-inner h2 {
+      font-family: 'Orbitron', monospace; font-size: 24px; font-weight: 700;
+      color: #fff; margin-bottom: 14px; letter-spacing: .04em;
+    }
+    .cta-inner p { color: var(--muted); font-size: 15px; margin-bottom: 30px; line-height: 1.7; }
+    .cta-btn {
+      background: linear-gradient(135deg, var(--cyan) 0%, #0ea5e9 100%);
+      color: #000; font-family: 'Exo 2', sans-serif; font-weight: 700;
+      font-size: 15px; padding: 14px 36px; border-radius: var(--r);
+      text-decoration: none; display: inline-block;
+      transition: box-shadow .3s, transform .2s; letter-spacing: .04em;
+    }
+    .cta-btn:hover { box-shadow: 0 0 28px rgba(0,207,255,.6); transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer {
+      position: relative; z-index: 5;
+      background-color: rgba(13,13,20,.96); border-top: 2px solid var(--cyan);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 28px 50px; backdrop-filter: blur(10px);
+    }
+    .footer-text { font-size: 14px; color: var(--muted); margin-bottom: 8px; line-height: 1.7; }
+    .footer-text span { color: var(--cyan); font-weight: 700; }
+    .address::before { content: "🏠 "; }
+    .tel::before     { content: "📞 "; }
+    .mail::before    { content: "✉️ "; }
+    .footer-logo { text-align: right; }
+    .footer-logo-text {
+      font-family: 'Orbitron', monospace; font-size: 20px; font-weight: 700;
+      color: var(--cyan); letter-spacing: 2px; text-shadow: 0 0 14px rgba(0,207,255,.4);
+    }
+    .footer-slogan { font-size: 12px; color: #555577; margin-top: 4px; font-style: italic; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 12px 20px; flex-wrap: wrap; gap: 6px; }
+      .about-hero { grid-template-columns: 1fr; gap: 32px; }
+      .values-grid { grid-template-columns: 1fr; }
+      .team-card { width: 100%; max-width: 340px; }
+      .feat-item { width: 100%; max-width: 340px; }
+      footer { flex-direction: column; gap: 20px; text-align: center; }
+      .footer-logo { text-align: center; }
+      .stats-row { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <p class="logo">💻 Hardware store</p>
+    <a class="button" href="#">🔥 Акції</a>
+  </header>
+
+  <nav>
+    <a class="nav-link" href="index.html">Каталог</a>
+    <a class="nav-link" href="#">Доставка</a>
+    <a class="nav-link" href="#">Гарантія</a>
+    <a class="nav-link active" href="about.html">Про нас</a>
+  </nav>
+
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span>💡 Ми працюємо з 2017 року</span>
+      <span>🏆 Найкращий магазин техніки 2024</span>
+      <span>🤝 Офіційний партнер Apple, Samsung, MSI</span>
+      <span>📦 Понад 4 800 задоволених клієнтів</span>
+      <span>🚚 Доставка по всій Україні</span>
+      <span>⭐ Рейтинг 4.9 за відгуками</span>
+      <span>💡 Ми працюємо з 2017 року</span>
+      <span>🏆 Найкращий магазин техніки 2024</span>
+      <span>🤝 Офіційний партнер Apple, Samsung, MSI</span>
+      <span>📦 Понад 4 800 задоволених клієнтів</span>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- HERO -->
+    <div class="about-hero">
+      <div class="about-hero-text">
+        <span class="about-tag">⚡ Hardware store — наша місія</span>
+        <h1>Ми — твій надійний партнер у світі техніки</h1>
+        <p><strong>Hardware store</strong> — це не просто магазин. Це команда захоплених технологіями людей, які щодня допомагають знаходити ідеальну техніку для роботи, навчання та гри.</p>
+        <p>З 2017 року ми будуємо довіру через чесний сервіс, офіційну гарантію та реальну підтримку після покупки. Кожен пристрій у нашому каталозі — <strong>перевірений і сертифікований</strong>.</p>
+        <p>Ми знаємо: техніка — це інвестиція. Тому підходимо до кожного клієнта індивідуально.</p>
+      </div>
+      <div class="about-hero-visual">
+        <div class="about-card">
+          <span class="about-card-icon">🛡️</span>
+          <h2>Чому нам довіряють?</h2>
+          <div class="shine-bar"></div>
+          <p>Офіційні дистриб'ютори Apple, Samsung, MSI, Lenovo, HP та інших провідних брендів. Усі товари мають українську гарантію та супровідні документи.</p>
+          <div class="shine-bar"></div>
+          <p class="star-rating">★★★★★ Рейтинг 4.9 / 5.0 за відгуками клієнтів</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- VALUES -->
+    <div class="section-divider"><span>◆ Наші цінності ◆</span></div>
+    <div class="values-section">
+      <div class="values-grid">
+        <div class="value-card">
+          <span class="value-icon">💎</span>
+          <div class="value-title">Якість без компромісів</div>
+          <p class="value-desc">Ми продаємо лише оригінальну техніку від офіційних дистриб'юторів. Жодних підробок, жодних сірих схем — тільки чесна торгівля.</p>
+        </div>
+        <div class="value-card" style="animation-delay:.1s">
+          <span class="value-icon">🤝</span>
+          <div class="value-title">Клієнт — на першому місці</div>
+          <p class="value-desc">Ми слухаємо. Ми радимо. Ми підтримуємо після покупки. Ваша задоволеність — наш головний KPI, а не кількість продажів.</p>
+        </div>
+        <div class="value-card" style="animation-delay:.2s">
+          <span class="value-icon">🚀</span>
+          <div class="value-title">Технологічний прогрес</div>
+          <p class="value-desc">Ми першими отримуємо новинки та стежимо за трендами індустрії. Ви завжди знайдете у нас найсучасніші рішення для будь-яких задач.</p>
+        </div>
+        <div class="value-card" style="animation-delay:.05s">
+          <span class="value-icon">🇺🇦</span>
+          <div class="value-title">Зроблено в Україні</div>
+          <p class="value-desc">Ми — українська компанія. Платимо податки в Україні, підтримуємо місцевих партнерів та розвиваємо технологічну культуру країни.</p>
+        </div>
+        <div class="value-card" style="animation-delay:.15s">
+          <span class="value-icon">🔒</span>
+          <div class="value-title">Прозорість та чесність</div>
+          <p class="value-desc">Чіткі умови гарантії, зрозумілі правила повернення, ніяких прихованих комісій. Що бачите — те й отримуєте.</p>
+        </div>
+        <div class="value-card" style="animation-delay:.25s">
+          <span class="value-icon">♻️</span>
+          <div class="value-title">Відповідальний бізнес</div>
+          <p class="value-desc">Партнерство з програмами утилізації техніки, мінімізація пакування та підтримка еко-ініціатив. Дбаємо про планету разом.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="section-divider"><span>◆ Наша історія ◆</span></div>
+    <div class="timeline-section">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2017</div>
+          <div class="tl-title">Заснування компанії</div>
+          <p class="tl-desc">Троє друзів-технарів відкрили невеликий магазин у Києві з 20 моделями ноутбуків і великою мрією стати найкращими у своїй справі.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot purple"></div>
+          <div class="tl-year purple">2019</div>
+          <div class="tl-title">Офіційне партнерство з Apple та Samsung</div>
+          <p class="tl-desc">Отримали статус авторизованого реселера двох найбільших брендів. Каталог розширився до 150+ позицій, відкрили другу точку.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot amber"></div>
+          <div class="tl-year amber">2021</div>
+          <div class="tl-title">Запуск інтернет-магазину</div>
+          <p class="tl-desc">Пандемія прискорила наш онлайн-розвиток. Запустили повноцінний сайт із доставкою по всій Україні та онлайн-консультацією.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot green"></div>
+          <div class="tl-year green">2023</div>
+          <div class="tl-title">4 000+ задоволених клієнтів</div>
+          <p class="tl-desc">Подолали рубіж 4 000 клієнтів та отримали нагороду «Найкращий рітейлер електроніки» від асоціації IT-trade.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot big"></div>
+          <div class="tl-year">2025 — сьогодні</div>
+          <div class="tl-title">Новий рівень ✦</div>
+          <p class="tl-desc">Рефреш бренду, нова платформа, 320+ товарів у каталозі та 24/7 підтримка. Ми не зупиняємось — і ви теж не маєте.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="section-divider"><span>◆ Цифри, якими ми пишаємось ◆</span></div>
+    <div class="stats">
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-number">4 800<sup>+</sup></div>
+          <div class="stat-label">Задоволених клієнтів</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">320<sup>+</sup></div>
+          <div class="stat-label">Товарів у каталозі</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Років досвіду</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">4.9</div>
+          <div class="stat-label">Рейтинг клієнтів</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEAM -->
+    <div class="section-divider"><span>◆ Наша команда ◆</span></div>
+    <div class="team-section">
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">👨‍💼</div>
+          <div class="team-name">Олексій Коваль</div>
+          <div class="team-role">CEO &amp; Co-founder</div>
+          <p class="team-bio">Засновник компанії. 12 років у IT-рітейлі. Відповідає за стратегію та партнерства з брендами.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">👩‍💻</div>
+          <div class="team-name">Марина Сидоренко</div>
+          <div class="team-role">Head of Tech</div>
+          <p class="team-bio">Технічний директор. Сертифікована Apple та Microsoft. Консультує клієнтів із 2019 року.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">🧑‍🎨</div>
+          <div class="team-name">Дмитро Лис</div>
+          <div class="team-role">Lead Designer</div>
+          <p class="team-bio">Відповідає за досвід клієнта та дизайн. Фанат мінімалізму та зручних інтерфейсів.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">👩‍🔧</div>
+          <div class="team-name">Вікторія Дем'яненко</div>
+          <div class="team-role">Support Manager</div>
+          <p class="team-bio">Керує командою підтримки 24/7. Гарантує, що кожен клієнт отримає відповідь вчасно.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="section-divider"><span>◆ Що ви отримуєте ◆</span></div>
+    <div class="features-row">
+      <div class="feat-item">
+        <div class="feat-icon">🚚</div>
+        <div class="feat-body">
+          <strong>Безкоштовна доставка</strong>
+          <span class="feat-tip">На замовлення від 2 000 ₴ по всій Україні</span>
+        </div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon">🛡️</div>
+        <div class="feat-body">
+          <strong>Офіційна гарантія</strong>
+          <span class="feat-tip">12–24 місяці на всі товари</span>
+        </div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon">↩️</div>
+        <div class="feat-body">
+          <strong>Повернення 30 днів</strong>
+          <span class="feat-tip">Не підійшло — повернемо без питань</span>
+        </div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon">💬</div>
+        <div class="feat-body">
+          <strong>Підтримка 24/7</strong>
+          <span class="feat-tip">Завжди на зв'язку в чаті або телефоном</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACTS -->
+    <div class="section-divider"><span>◆ Зв'яжіться з нами ◆</span></div>
+    <div class="contacts-bar">
+      <a class="contact-chip" href="tel:0800333999">
+        <span class="contact-chip-icon">📞</span>
+        <div>
+          <div class="contact-chip-label">Телефон</div>
+          <div class="contact-chip-val">0800-333-999</div>
+        </div>
+      </a>
+      <a class="contact-chip" href="mailto:info@laptophub.ua">
+        <span class="contact-chip-icon">✉️</span>
+        <div>
+          <div class="contact-chip-label">Email</div>
+          <div class="contact-chip-val">info@laptophub.ua</div>
+        </div>
+      </a>
+      <a class="contact-chip" href="#">
+        <span class="contact-chip-icon">🏠</span>
+        <div>
+          <div class="contact-chip-label">Адреса</div>
+          <div class="contact-chip-val">Київ, вул. Технологічна, 67</div>
+        </div>
+      </a>
+      <a class="contact-chip" href="#">
+        <span class="contact-chip-icon">💬</span>
+        <div>
+          <div class="contact-chip-label">Telegram</div>
+          <div class="contact-chip-val">@hardwarestore_ua</div>
+        </div>
+      </a>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-block">
+      <div class="cta-inner">
+        <h2>Готові знайти свою ідеальну техніку?</h2>
+        <p>Перегляньте наш каталог або зверніться до наших консультантів — ми підберемо рішення саме для вас.</p>
+        <a class="cta-btn" href="index.html">→ Перейти до каталогу</a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="contacts">
+      <p class="footer-text"><span class="address">Адреса:</span> м. Київ, вул. Технологічна, 52</p>
+      <p class="footer-text"><span class="tel">Телефон:</span> 0932743817</p>
+      <p class="footer-text"><span class="mail">Email:</span> info@laptophub.ua</p>
+    </div>
+    <div class="footer-logo">
+      <p class="footer-logo-text">💻 Hardware store</p>
+      <p class="footer-slogan">Твій ноутбук — твоя сила</p>
+    </div>
+  </footer>
+
+</body>
+</html>
